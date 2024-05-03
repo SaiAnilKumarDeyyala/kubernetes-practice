@@ -1,0 +1,30 @@
+apiVersion: apps/v1 
+kind: Deployment 
+metadata:
+  name: ubuntu-sleeper
+  labels: 
+    app: ubuntu 
+spec:
+  selector:
+    matchLabels: 
+      app: ubuntu 
+  template:
+    metadata:
+      labels:
+        app: ubuntu 
+    spec: 
+      containers:
+        - name: ubuntu-sleeper
+          image: ubuntu 
+          command: ["sleep","120"] # command ovverrides the entrypoint
+          # args: ["42"] # args overrides the command in dockerfile
+          ports:
+            - containerPort: 80 
+          resources: 
+            requests:
+              memory: 100Mi  # memory mesarued i byte
+              cpu: 100m # cpu measured in cpu units 1 cpu = 1000m
+            limits: 
+              memory: 100Mi 
+              cpu: 100m # 100 milli cpu or 0.1 cpu
+      
