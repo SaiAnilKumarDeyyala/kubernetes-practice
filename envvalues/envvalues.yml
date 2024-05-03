@@ -1,0 +1,35 @@
+apiVersion: apps/v1 
+kind: Deployment 
+metadata:
+  name: sql
+  labels:
+    db: sql
+spec: 
+  selector:
+    matchLabels:
+      db: sql 
+  template:
+    metadata:
+      labels:
+        db: sql
+    spec: 
+      containers:
+        - name: mysql 
+          image: mysql 
+          env:
+            - name: MYSQL_USER
+              value: admin
+            - name: MYSQL_PASSWORD
+              value: pwdrwe
+            - name: MYSQL_DATABASE
+              value: database 
+          ports:
+            - containerPort: 3306
+          resources:
+            requests: 
+              memory: 100Mi 
+              cpu: 500m 
+            limits: 
+              memory: 100Mi 
+              cpu: 500m
+      

@@ -1,0 +1,24 @@
+apiVersion: apps/v1 
+kind: Deployment 
+metadata:
+  name: sql
+  labels:
+    db: sql
+spec: 
+  selector:
+    matchLabels:
+      db: sql 
+  template:
+    metadata:
+      labels:
+        db: sql
+    spec: 
+      containers:
+        - name: mysql 
+          image: mysql 
+          envFrom:
+            - configMapRef:
+                name: test
+                # key: env # if you wnat to use only single env or specific value
+
+      
