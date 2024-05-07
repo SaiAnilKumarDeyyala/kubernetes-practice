@@ -1,0 +1,12 @@
+apiVersion: v1
+kind: Service 
+metadata: 
+  name: exm-service 
+spec: 
+  type: ClusterIP # default type is also ClusterIP even without mentioning it will create clusterIp
+  selector: 
+    app: clusterip 
+  ports:
+    - protocol: TCP 
+      port: 80 
+      targetPort: 80 

@@ -1,1 +1,31 @@
-#Kubernetes-Practice
+# Some Imperative Commands
+- Kubectl get pods
+- Kubectl run podname –-image=nginx
+- Kubectl set image pod/podname containername=newimage ( to change image of already deployed pod/deploy )
+- Kubectl create ns dev
+- Kubectl run nginx –image=nginx –dry-run=client -o yaml > save.yml
+- Kubectl create deployment –image=nginx nginx –dry-ryn -o yaml > dep.yml
+- Kubectl scale deployment nginx –replicas=4
+- Kubectl expose deploy nginx –type=NodePort –name=nginx-service
+- k replace --force -f ubuntu-sleeper-3.yaml 
+- Kubectl create configmap name –from-literal=key=value
+- Kubectl create configmap name –from-file=file.config
+- Kubectl get pods -w ( watch mode )
+- Kubectl get all -A 
+- Kubectl get pods –all-namespaces
+- Kubectl create secret generic secretname –from-literal=key=value
+- kubectl taint nodes node01 key=value:effect
+- Kubectl get pods –selector app=nginx
+- Kubectl rollout status deployment/app
+- Kubectl rollout history deployment/app
+- Kubectl rollout undo deployment/app
+- Restart all deployments in test-namespace namespace
+- kubectl rollout restart deployment -n test-namespace
+- Restart a deployment
+- kubectl rollout restart deployment/nginx
+- Restart a daemon set
+- kubectl rollout restart daemonset/abc
+- Restart deployments with the app=nginx label
+- kubectl rollout restart deployment --selector=app=nginx
+- Kubectl apply -f app.yaml –record
+- Kubectl exec -it podname -- /bin/bash
