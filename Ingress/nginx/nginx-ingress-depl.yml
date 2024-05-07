@@ -1,0 +1,46 @@
+# First you have to deploy nginx ingress and expose it 
+#$ kubectl apply -f https://raw.githubusercontent.com/kubernetes/ingress-nginx/controller-v0.44.0/deploy/static/provider/cloud/deploy.yaml
+apiVersion: extensions/v1beta1
+kind: Ingress
+metadata:
+  name: hello-world
+  annotations:
+    kubernetes.io/ingress.class: ingress-nginx
+spec:
+  rules:
+  - host: host1.domain.com
+    http:
+      paths:
+      - backend:
+          serviceName: hello-world
+          servicePort: 80
+  - host: host2.domain.com
+    http:
+      paths:
+      - backend:
+          serviceName: hello-man
+          servicePort: 8080
+
+---
+# If path specific use below
+apiVersion: extensions/v1beta1
+kind: Ingress
+metadata:
+  name: hello-world
+  annotations:
+    kubernetes.io/ingress.class: ingress-nginx
+spec:
+  rules:
+  - http:
+      paths:
+      - path: /hello 
+        backend:
+          serviceName: hello
+          servicePort: 80
+      - path: /world 
+        backend:
+          serviceName: world 
+          servicePort: 8080
+
+      
+
