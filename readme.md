@@ -29,3 +29,4 @@
 - kubectl rollout restart deployment --selector=app=nginx
 - Kubectl apply -f app.yaml –record
 - Kubectl exec -it podname -- /bin/bash
+- kubectl describe pod podname
