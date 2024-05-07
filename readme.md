@@ -16,6 +16,7 @@
 - Kubectl create secret generic secretname –from-literal=key=value
 - kubectl taint nodes node01 key=value:effect
 - Kubectl get pods –selector app=nginx
+- kubectl create -f depl.yml --record
 - Kubectl rollout status deployment/app
 - Kubectl rollout history deployment/app
 - Kubectl rollout undo deployment/app
