@@ -1,0 +1,17 @@
+# nodeSelector is the simplest recommended form of node selection constraint.
+#  You can add the nodeSelector field to your Pod specification and specify the node labels you want the target node to have.
+#  Kubernetes only schedules the Pod onto nodes that have each of the labels you specify.
+# kubectl label node node01 size=Large 
+apiVersion: v1
+kind: Pod 
+metadata:
+  name: nodeselctorpod 
+spec:
+  containers:
+  - name: nginx 
+    image: nginx 
+  nodeSelector:
+    size: Large 
+
+# This pod will schedule on node which has label size = Large
+# But you can do like place or large or small, small or medium like that 

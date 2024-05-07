@@ -1,0 +1,21 @@
+# TAINTS are applied to nodes using "kubectl taint nodes node-name key=value:taint-effect" command
+# taint-effects = NoSchedule, PreferNoSchedule, NoExecute (what happens to pods that do not tolerate this taint)
+# toleratinos are applied to pods
+apiVersion: v1 
+kind: Pod 
+metadata:
+  name: toleratedpod
+  labels:
+    app: nginx 
+spec:
+  containers:
+    - name: nginx 
+      image: nginx 
+  tolerations:
+    - key: "app"
+      operator: "Equal" 
+      value: "blue"
+      effect: "NoSchedule"
+
+
+# There is no guarentee that this pod is sheduled on the tainted node, it can be scheduled on any other node but no other pods can schedule on that node
