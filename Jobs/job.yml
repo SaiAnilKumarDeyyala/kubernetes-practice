@@ -1,0 +1,13 @@
+apiVersion: batch/v1
+kind: Job 
+metadata:
+  name: match-job 
+spec:
+  completions: 3 # to run the same jo 3 times 
+  template:
+    spec: 
+      containers:
+        - name: match-add 
+          image: ubuntu 
+          command: ['expr','3','+','2']
+      restartPolicy: Never 

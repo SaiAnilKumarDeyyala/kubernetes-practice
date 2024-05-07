@@ -1,0 +1,19 @@
+# A CronJob creates Jobs on a repeating schedule.
+
+# CronJob is meant for performing regular scheduled actions such as backups, report generation, and so on
+apiVersion: batch/v1beta1
+kind: CronJob 
+metadata:
+  name: reporting-cronjob
+spec:
+  schedule: "*/1 * * * *"
+  jobTemplate:
+    spec:
+      completions: 3 
+      parallelism: 3 
+      template: 
+        spec: 
+          containers:
+            - name: reporting-tool
+              image: reporting-tool 
+        restartPolicy: Never 
