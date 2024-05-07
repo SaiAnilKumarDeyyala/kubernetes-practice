@@ -1,0 +1,30 @@
+# Readiness Probe: The kubelet uses readiness probes to know when a container is ready to start accepting traffic. 
+# A Pod is considered ready when all of its containers are ready. One use of this signal is to control which Pods are used as backends for Services. 
+# When a Pod is not ready, it is removed from Service load balancers.
+
+#Liveness Probe: The kubelet uses liveness probes to know when to restart a container.
+#  For example, liveness probes could catch a deadlock, where an application is running, but unable to make progress.
+#   Restarting a container in such a state can help to make the application more available despite bugs.
+
+apiVersion: v1
+kind: Pod
+metadata:
+  name: goproxy
+  labels:
+    app: goproxy
+spec:
+  containers:
+  - name: goproxy
+    image: registry.k8s.io/goproxy:0.1
+    ports:
+    - containerPort: 8080
+    readinessProbe:
+      tcpSocket:
+        port: 8080
+      initialDelaySeconds: 15
+      periodSeconds: 10
+    livenessProbe:
+      tcpSocket:
+        port: 8080
+      initialDelaySeconds: 15
+      periodSeconds: 10
